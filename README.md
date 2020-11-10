@@ -1,0 +1,2 @@
+# Slayt
+Slayt uygulamasi
