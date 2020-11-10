@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				border: none;
+				outline: none;
+			}
+			#ana-alan {
+				width: 900px;
+				height: 600px;
+				border: 10px double rgb(12, 138, 117);
+				margin: 16px auto;
+				position: relative;
+				overflow: hidden;
+			}
+			#resim-alani {
+				width: 900px;
+				height: 600px;
+			}
+			#sol {
+				position: absolute;
+				left: 0;
+				top: 40%;
+				float: left;
+				opacity: 0;
+			}
+			#sol:hover {
+				opacity: 0.6;
+			}
+
+			#sag {
+				position: absolute;
+				right: 0;
+				top: 40%;
+				float: right;
+				opacity: 0;
+			}
+			#sag:hover {
+				opacity: 0.6;
+			}
+		</style>
+	</head>
+	<body onload="degis()">
+		<div id="ana-alan">
+			<div id="resim-alani"><img id="resim" src="./resim/1.jpg" alt="resim yok" width="900" height="600" /></div>
+			<div id="sol">
+				<img onclick="demo(-1)" id="sol-git" src="resim/Arrow-Left-2-icon.png" width="64" height="64" />
+			</div>
+			<div id="sag">
+				<img onclick="demo(1)" id="sag-git" src="resim/Next-2-icon.png" width="64" height="64" />
+			</div>
+		</div>
+		<div id="sayi"></div>
+		<script>
+			var yaz = document.getElementById('sayi');
+			var resim;
+			var sayi = 1;
+			var zaman;
+			function degis() {
+				resim = document.getElementById('resim');
+				zaman = window.setInterval(() => {
+					resim.setAttribute('src', './resim/' + sayi + '.jpg');
+					sayi++;
+					if (sayi < 1 || sayi > 16) {
+						sayi = 1;
+					}
+				}, 2000);
+			}
+
+			function demo(gelen) {
+				clearInterval(zaman);
+				if (gelen < 0) {
+					sayi--;
+					if (sayi < 1) {
+						sayi = 16;
+					}
+				} else if (gelen > 0) {
+					sayi++;
+				}
+
+				if (sayi < 1 || sayi > 16) {
+					sayi = 1;
+				}
+				resim.setAttribute('src', './resim/' + sayi + '.jpg');
+				degis();
+			}
+		</script>
+	</body>
+</html>
